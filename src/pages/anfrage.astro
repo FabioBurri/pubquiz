@@ -78,11 +78,7 @@ const redirect = new URL('/danke/', Astro.site).href;
         <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. Mehr dazu in der <a href="/datenschutz/" class="underline underline-offset-2">Datenschutzerklärung</a>.</span>
       </label>
       <div class="sm:col-span-2">
-        <button type="submit" class="inline-flex items-center justify-center rounded-full bg-berner px-8 py-4 font-semibold text-cream shadow-[0_3px_0_var(--color-ink)] transition hover:bg-berner-dark hover:translate-y-[2px] hover:shadow-[0_1px_0_var(--color-ink)]">Anfrage senden</button>
-        {!site.web3formsKey && (
-          <p class="mt-4 rounded-xl bg-brass/25 p-4 text-sm"><strong>Hinweis (Entwicklung):</strong> Es ist noch kein Web3Forms-Key hinterlegt (<code>src/data/site.ts</code>). Das Formular sendet erst danach.</p>
-        )}
-      </div>
+        <button type="submit" class="inline-flex items-center justify-center rounded-full bg-berner px-8 py-4 font-semibold text-cream shadow-[0_3px_0_var(--color-ink)] transition hover:bg-berner-dark hover:translate-y-[2px] hover:shadow-[0_1px_0_var(--color-ink)]">Anfrage senden</button>      </div>
     </form>
 
     <aside class="space-y-6">
