@@ -1,0 +1,56 @@
+---
+import { formatCHF, type Package } from '../data/site';
+interface Props { pkg: Package; tilt?: number }
+const { pkg, tilt = 0 } = Astro.props;
+---
+
+<article
+  class:list={[
+    'relative flex flex-col rounded-[1.75rem] border-2 p-7 pt-9',
+    pkg.featured ? 'border-ink bg-bottle text-paper' : 'border-ink/15 bg-card',
+  ]}
+>
+  {pkg.featured && (
+    <span class="absolute -top-3.5 left-7 rounded-full bg-senf px-3 py-1 font-mono text-[0.7rem] uppercase tracking-widest text-ink">Meistgebucht</span>
+  )}
+
+  <!-- Preis als Bierdeckel -->
+  <div
+    class:list={[
+      'absolute -top-7 right-5 grid size-24 place-items-center rounded-full border-[3px] border-dashed text-center leading-none',
+      pkg.featured ? 'border-paper/40 bg-berner text-paper' : 'border-ink/25 bg-paper text-ink',
+    ]}
+    style={`transform: rotate(${tilt}deg)`}
+  >
+    <span>
+      <span class="block text-[0.65rem] font-mono uppercase tracking-widest opacity-80">{pkg.priceFrom ? 'ab CHF' : 'CHF'}</span>
+      <span class="block font-display text-[1.65rem] font-extrabold">{formatCHF(pkg.price).replace('CHF ', '')}</span>
+    </span>
+  </div>
+
+  <h3 class="text-2xl pr-24">{pkg.name}</h3>
+  <p class:list={['mt-1 text-[0.95rem] pr-20', pkg.featured ? 'text-paper/75' : 'text-ink-soft']}>{pkg.forWhom}</p>
+
+  <dl class:list={['mt-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 border-y py-4 text-[0.95rem]', pkg.featured ? 'border-paper/20' : 'border-line']}>
+    <dt class="opacity-70">Gruppe</dt><dd class="font-semibold">{pkg.people}</dd>
+    <dt class="opacity-70">Dauer</dt><dd class="font-semibold">{pkg.duration}</dd>
+    <dt class="opacity-70">Quiz</dt><dd class="font-semibold">{pkg.rounds}</dd>
+  </dl>
+
+  <ul class="mt-5 space-y-2.5 text-[0.95rem]">
+    {pkg.includes.map((i) => (
+      <li class="flex gap-2.5">
+        <svg class:list={['mt-1 size-4 shrink-0', pkg.featured ? 'text-senf' : 'text-berner']} viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>{i}</span>
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href={`/anfrage/?paket=${pkg.id}`}
+    class:list={[
+      'mt-8 inline-flex justify-center rounded-full px-5 py-3 font-semibold transition',
+      pkg.featured ? 'bg-paper text-ink hover:bg-senf' : 'border-2 border-ink hover:bg-ink hover:text-paper',
+    ]}
+  >«{pkg.name}» anfragen</a>
+</article>

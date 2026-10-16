@@ -1,0 +1,10 @@
+---
+// Abschnitts-Label im Stil einer Quizrunde: «Runde 2 · Ablauf»
+interface Props { round?: string; class?: string }
+const { round, class: cls = '' } = Astro.props;
+---
+
+<p class:list={['inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-berner', cls]}>
+  {round && <span class="rounded-full border border-current px-2 py-0.5">{round}</span>}
+  <span><slot /></span>
+</p>

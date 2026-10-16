@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqs } from '../data/faq';
+import { faqSchema, breadcrumbSchema } from '../lib/schema';
+---
+
+<BaseLayout
+  title="FAQ: Häufige Fragen zum Pubquiz buchen"
+  description="Antworten zu Kosten, Gruppengrösse, Ort, Insider-Runde, Themenquiz und Buchung eines privaten Pubquiz in Bern."
+  jsonLd={[faqSchema(faqs), breadcrumbSchema([{ name: 'FAQ', path: '/faq/' }])]}
+>
+  <PageHeader
+    label="FAQ"
+    title="Häufige Fragen"
+    lead="Was ihr vor der Buchung wissen wollt. Falls eure Frage fehlt: einfach schreiben."
+    crumbs={[{ name: 'FAQ', path: '/faq/' }]}
+  />
+  <section class="container-page mt-16 max-w-4xl">
+    <FaqList items={faqs} />
+  </section>
+  <CtaBand />
+</BaseLayout>

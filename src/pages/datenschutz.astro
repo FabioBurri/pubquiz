@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Datenschutzerklärung" description={`Datenschutzerklärung von ${site.name} nach Schweizer Datenschutzgesetz (DSG).`}>
+  <section class="container-page max-w-3xl py-16 prose-chopf">
+    <h1 class="text-4xl sm:text-5xl mb-8">Datenschutzerklärung</h1>
+    <!-- PLATZHALTER: vor dem Livegang prüfen bzw. mit einem Generator (z.B. Datenschutzpartner) oder fachlich erstellen lassen -->
+    <p>Diese Datenschutzerklärung informiert darüber, welche Personendaten wir bearbeiten, wenn ihr unsere Website besucht oder uns eine Anfrage schickt. Sie richtet sich nach dem Schweizer Datenschutzgesetz (DSG).</p>
+
+    <h2>Verantwortliche Stelle</h2>
+    <p>{site.name}, Vorname Nachname, Strasse Nr., 3000 Bern, <a href={`mailto:${site.email}`}>{site.email}</a></p>
+
+    <h2>Hosting</h2>
+    <p>Diese Website wird bei Vercel Inc. (USA) gehostet. Beim Aufruf werden technisch notwendige Daten wie IP-Adresse, Datum, Uhrzeit und aufgerufene Seite in Server-Logfiles verarbeitet. Dies dient dem sicheren Betrieb der Website.</p>
+
+    <h2>Anfrageformular</h2>
+    <p>Wenn ihr das Anfrageformular nutzt, verarbeiten wir die angegebenen Daten (Name, E-Mail, optional Telefon, Angaben zum Anlass) ausschliesslich zur Bearbeitung eurer Anfrage. Die Übermittlung erfolgt über den Dienst Web3Forms, der die Angaben per E-Mail an uns weiterleitet.</p>
+
+    <h2>Schriften und Cookies</h2>
+    <p>Wir verwenden keine Tracking-Cookies. Die Schriftarten werden direkt von unserem Server geladen, es werden keine Daten an Google Fonts übertragen.</p>
+
+    <h2>Aufbewahrung</h2>
+    <p>Wir bewahren Anfragen so lange auf, wie es für die Bearbeitung und allfällige gesetzliche Pflichten nötig ist.</p>
+
+    <h2>Eure Rechte</h2>
+    <p>Ihr habt das Recht auf Auskunft, Berichtigung und Löschung eurer Daten. Schreibt uns dazu an <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </section>
+</BaseLayout>

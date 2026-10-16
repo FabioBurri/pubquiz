@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Impressum" description={`Impressum von ${site.name}, Pubquiz-Organisation in Bern.`}>
+  <section class="container-page max-w-3xl py-16 prose-chopf">
+    <h1 class="text-4xl sm:text-5xl mb-8">Impressum</h1>
+    <!-- PLATZHALTER: echte Angaben einsetzen -->
+    <p><strong>{site.name}</strong><br />Vorname Nachname<br />Strasse Nr.<br />3000 Bern<br />Schweiz</p>
+    <p>E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />Telefon: {site.phoneDisplay}</p>
+    <p>Vertretungsberechtigte Person(en): Vorname Nachname</p>
+    <p>UID / Handelsregister: (falls vorhanden)</p>
+    <h2>Haftungsausschluss</h2>
+    <p>Wir prüfen die Inhalte dieser Website sorgfältig, übernehmen aber keine Gewähr für Richtigkeit, Vollständigkeit und Aktualität. Für Inhalte verlinkter Websites sind ausschliesslich deren Betreiber verantwortlich.</p>
+    <h2>Urheberrechte</h2>
+    <p>Texte, Bilder und Gestaltung dieser Website gehören {site.name} oder den genannten Rechteinhabern. Die Verwendung bedarf unserer Zustimmung.</p>
+  </section>
+</BaseLayout>

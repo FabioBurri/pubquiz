@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import RoundLabel from '../components/RoundLabel.astro';
+import AnswerSheet from '../components/AnswerSheet.astro';
+import PackageCard from '../components/PackageCard.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, packages } from '../data/site';
+import { occasions } from '../data/occasions';
+import { steps } from '../data/steps';
+import { faqsFor } from '../data/faq';
+import { faqSchema } from '../lib/schema';
+
+const homeFaqs = faqsFor('home');
+
+const facts = [
+  { k: 'Gruppe', v: '8–150 Personen' },
+  { k: 'Dauer', v: '2–3 Stunden' },
+  { k: 'Ort', v: 'Stadt & Region Bern' },
+  { k: 'Preis', v: 'ab CHF 590' },
+];
+
+const included = [
+  { t: 'Massgeschneiderte Fragen', d: 'Für eure Gruppe geschrieben, nicht aus dem Internet kopiert.' },
+  { t: 'Ein Quizmaster, der führt', d: 'Mit Tempo, Humor und klaren Regeln. Niemand muss Bierdeckel zählen.' },
+  { t: 'Bild-, Musik- und Schätzrunden', d: 'Damit auch die gewinnen können, die keine Jahreszahlen auswendig kennen.' },
+  { t: 'Material und Technik', d: 'Antwortblätter, Stifte, Joker, auf Wunsch Mikrofon, Boxen und Beamer.' },
+  { t: 'Auswertung und Rangliste', d: 'Nach jeder Runde, damit es spannend bleibt bis zur letzten Frage.' },
+  { t: 'Preis fürs Siegerteam', d: 'Und ewiger Ruhm, mindestens bis zum nächsten Quiz.' },
+];
+---
+
+<BaseLayout
+  title="Pubquiz buchen in Bern – privat & für Firmen"
+  description={site.description}
+  jsonLd={[faqSchema(homeFaqs)]}
+>
+  <!-- Hero -->
+  <section class="ruled border-b border-line overflow-hidden">
+    <div class="container-page grid items-center gap-14 pt-12 pb-16 lg:grid-cols-[1.15fr_1fr] lg:pt-20 lg:pb-24">
+      <div>
+        <RoundLabel>Pubquiz zum Buchen · Bern</RoundLabel>
+        <h1 class="mt-5 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.4rem]">
+          Euer eigenes Pubquiz in Bern. <span class="text-berner">Wir bringen den ganzen Abend mit.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg sm:text-xl text-ink-soft">
+          Für Teamevents, Geburtstage, Polterabende oder einfach eure Freundesrunde. Wir schreiben die Fragen, auch über euch, moderieren und werten aus. Ihr müsst nur noch gewinnen.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <Button href="/anfrage/">Quiz unverbindlich anfragen</Button>
+          <Button href="/preise/" variant="ghost">Preise ab CHF 590</Button>
+        </div>
+        <p class="mt-5 text-sm text-ink-soft">Antwort innert 24 Stunden · Keine Anzahlung für die Anfrage</p>
+      </div>
+      <AnswerSheet />
+    </div>
+  </section>
+
+  <!-- Fakten -->
+  <section aria-label="Das Wichtigste in Kürze" class="border-b border-line bg-card">
+    <dl class="container-page grid grid-cols-2 lg:grid-cols-4">
+      {facts.map((f, i) => (
+        <div class:list={['py-6 px-1 sm:px-4', i % 2 === 1 && 'border-l border-line pl-4', i >= 2 && 'border-t lg:border-t-0 border-line', i === 2 && 'lg:border-l lg:pl-4']}>
+          <dt class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-soft">{f.k}</dt>
+          <dd class="mt-1 font-display text-xl sm:text-2xl font-bold">{f.v}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Anlässe -->
+  <section class="container-page mt-24">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <RoundLabel round="Runde 1">Für wen</RoundLabel>
+        <h2 class="mt-3 text-3xl sm:text-5xl max-w-2xl">Egal was ihr feiert. Ein Quiz passt fast immer.</h2>
+      </div>
+    </div>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {occasions.map((o, i) => (
+        <a href={`/${o.slug}/`} class="group relative flex flex-col rounded-[1.5rem] border-2 border-ink/10 bg-card p-7 transition hover:border-ink hover:-translate-y-1">
+          <span class="font-mono text-sm text-berner">0{i + 1}</span>
+          <h3 class="mt-3 text-2xl">{o.card.title}</h3>
+          <p class="mt-2 text-ink-soft">{o.card.text}</p>
+          <span class="mt-6 inline-flex items-center gap-2 font-semibold">
+            Mehr erfahren
+            <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Insider-Runde -->
+  <section class="mt-24 bg-bottle text-paper">
+    <div class="container-page grid gap-12 py-20 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-senf">
+          <span class="rounded-full border border-current px-2 py-0.5">Runde 2</span> Die Insider-Runde
+        </p>
+        <h2 class="mt-3 text-3xl sm:text-5xl">Fragen, die nur ihr beantworten könnt.</h2>
+        <p class="mt-5 max-w-lg text-paper/80 text-lg">
+          Ihr verratet uns im Vorgespräch ein paar Anekdoten über euer Team, das Geburtstagskind oder das Brautpaar. Wir machen daraus eine Quizrunde. Erfahrungsgemäss die lauteste des Abends.
+        </p>
+        <a href="/faq/" class="mt-7 inline-flex font-semibold underline underline-offset-4 decoration-senf hover:text-senf">Wie das genau funktioniert</a>
+      </div>
+      <ul class="space-y-4">
+        {[
+          'Wie viele Kaffeekapseln verbraucht euer Büro pro Woche?',
+          'Wer aus dem Team hat schon einmal in einer Band gespielt?',
+          'Welches Land hat Lea auf ihrer Weltreise nach zwei Tagen wieder verlassen?',
+        ].map((q, i) => (
+          <li class:list={['rounded-2xl bg-paper text-ink p-5 sm:p-6 shadow-[6px_6px_0_var(--color-senf)]', i === 1 && 'sm:ml-10 -rotate-1', i === 2 && 'sm:ml-4 rotate-1']}>
+            <span class="font-mono text-xs uppercase tracking-widest text-berner">Insider-Frage {i + 1}</span>
+            <p class="mt-1.5 font-display text-lg sm:text-xl font-semibold leading-snug">{q}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Inbegriffen -->
+  <section class="container-page mt-24">
+    <RoundLabel round="Runde 3">Was drin ist</RoundLabel>
+    <h2 class="mt-3 text-3xl sm:text-5xl max-w-3xl">Ihr bucht einen Abend, nicht bloss einen Fragenkatalog.</h2>
+    <div class="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+      {included.map((it, i) => (
+        <div class="border-t-2 border-ink pt-5">
+          <span class="font-mono text-sm text-ink-soft">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-1 text-xl">{it.t}</h3>
+          <p class="mt-2 text-ink-soft">{it.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Ablauf -->
+  <section class="container-page mt-24">
+    <div class="rounded-[2rem] border-2 border-ink/10 bg-card p-7 sm:p-12">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <RoundLabel round="Runde 4">Ablauf</RoundLabel>
+          <h2 class="mt-3 text-3xl sm:text-5xl">In vier Schritten zum Quizabend.</h2>
+        </div>
+        <a href="/ablauf/" class="font-semibold underline underline-offset-4 hover:text-berner">Ablauf im Detail</a>
+      </div>
+      <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <li>
+            <span class="grid size-12 place-items-center rounded-full bg-berner font-display text-xl font-extrabold text-paper">{i + 1}</span>
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-1.5 text-ink-soft">{s.short}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Preise -->
+  <section class="container-page mt-24">
+    <RoundLabel round="Runde 5">Preise</RoundLabel>
+    <h2 class="mt-3 text-3xl sm:text-5xl max-w-3xl">Klare Pakete, keine versteckten Kosten.</h2>
+    <p class="mt-4 max-w-2xl text-lg text-ink-soft">Vorbereitung, Fragen, Moderation und Material sind immer inbegriffen. Location und Getränke organisiert ihr, gerne mit unseren Tipps.</p>
+    <div class="mt-16 grid gap-12 lg:grid-cols-3 lg:gap-6">
+      {packages.map((p, i) => <PackageCard pkg={p} tilt={[-8, 6, -4][i]} />)}
+    </div>
+    <p class="mt-8 text-ink-soft">Zusatzoptionen wie Nischenquiz oder weitere Insider-Runden findet ihr auf der <a href="/preise/" class="underline underline-offset-4 hover:text-berner">Preisseite</a>.</p>
+  </section>
+
+  <!-- Probierfrage -->
+  <section class="container-page mt-24">
+    <div class="ruled mx-auto max-w-3xl rounded-[2rem] border-2 border-ink bg-card p-7 sm:p-12 text-center">
+      <RoundLabel>Probierfrage</RoundLabel>
+      <p class="mt-4 font-display text-2xl sm:text-4xl font-bold leading-tight">Wie viele Figurenbrunnen aus dem 16.&nbsp;Jahrhundert stehen in der Berner Altstadt?</p>
+      <details class="group mt-8">
+        <summary class="mx-auto inline-flex cursor-pointer list-none rounded-full border-2 border-ink px-6 py-3 font-semibold hover:bg-ink hover:text-paper [&::-webkit-details-marker]:hidden">
+          <span class="group-open:hidden">Antwort aufdecken</span>
+          <span class="hidden group-open:inline">Zugedeckt hätte es mehr Spannung gegeben</span>
+        </summary>
+        <p class="mt-6 text-lg"><strong class="font-display text-4xl text-berner">11</strong><br /><span class="text-ink-soft">Vom Kindlifresser bis zum Gerechtigkeitsbrunnen. Wer es wusste: Wir suchen noch Leute fürs Team.</span></p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-page mt-24 grid gap-10 lg:grid-cols-[1fr_1.6fr]">
+    <div>
+      <RoundLabel round="Runde 6">Häufige Fragen</RoundLabel>
+      <h2 class="mt-3 text-3xl sm:text-5xl">Gut zu wissen.</h2>
+      <p class="mt-4 text-ink-soft">Mehr Antworten auf der <a href="/faq/" class="underline underline-offset-4 hover:text-berner">FAQ-Seite</a>.</p>
+    </div>
+    <FaqList items={homeFaqs} />
+  </section>
+
+  <CtaBand />
+</BaseLayout>

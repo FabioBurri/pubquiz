@@ -1,0 +1,6 @@
+# Suchmaschinen und KI-Assistenten sind willkommen (wichtig für GEO).
+User-agent: *
+Allow: /
+Disallow: /danke/
+
+Sitemap: https://www.chopfnuss.ch/sitemap-index.xml

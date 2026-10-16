@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import RoundLabel from '../components/RoundLabel.astro';
+---
+
+<BaseLayout title="Danke für eure Anfrage" description="Eure Anfrage ist bei uns angekommen." noindex>
+  <section class="ruled">
+    <div class="container-page py-24 text-center">
+      <RoundLabel>Anfrage erhalten</RoundLabel>
+      <h1 class="mx-auto mt-4 max-w-2xl text-4xl sm:text-6xl">Richtige Antwort. <span class="text-berner">1 Punkt.</span></h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg text-ink-soft">Danke für eure Anfrage. Wir melden uns innert 24 Stunden mit einer Offerte. Bis dahin: schon mal einen Teamnamen überlegen.</p>
+      <div class="mt-9"><Button href="/">Zur Startseite</Button></div>
+    </div>
+  </section>
+</BaseLayout>
