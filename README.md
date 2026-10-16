@@ -1,4 +1,4 @@
-# Chopfnuss – Pubquiz buchen in Bern
+# Chopf & Chrage – Pubquiz buchen in Bern
 
 Website für ein buchbares Pubquiz-Angebot in Bern. Gebaut mit [Astro](https://astro.build) und Tailwind CSS.
 

@@ -1,5 +1,6 @@
 ---
 import RoundLabel from './RoundLabel.astro';
+import LightString from './LightString.astro';
 interface Props {
   label: string;
   title: string;
@@ -9,24 +10,25 @@ interface Props {
 const { label, title, lead, crumbs = [] } = Astro.props;
 ---
 
-<section class="ruled border-b border-line">
-  <div class="container-page pt-10 pb-14 sm:pt-14 sm:pb-20">
+<section class="wood relative overflow-hidden">
+  <LightString />
+  <div class="container-page relative pt-20 pb-14 sm:pt-24 sm:pb-20">
     {crumbs.length > 0 && (
-      <nav aria-label="Brotkrümel" class="mb-8 text-sm text-ink-soft">
+      <nav aria-label="Brotkrümel" class="mb-8 text-sm text-cream/60">
         <ol class="flex flex-wrap items-center gap-1.5">
-          <li><a href="/" class="hover:text-berner">Start</a></li>
+          <li><a href="/" class="hover:text-brass-2">Start</a></li>
           {crumbs.map((c, i) => (
             <li class="flex items-center gap-1.5">
               <span aria-hidden="true">/</span>
-              {i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <a href={c.path} class="hover:text-berner">{c.name}</a>}
+              {i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <a href={c.path} class="hover:text-brass-2">{c.name}</a>}
             </li>
           ))}
         </ol>
       </nav>
     )}
-    <RoundLabel>{label}</RoundLabel>
+    <RoundLabel tone="light">{label}</RoundLabel>
     <h1 class="mt-4 max-w-4xl text-4xl sm:text-6xl">{title}</h1>
-    {lead && <p class="mt-6 max-w-2xl text-lg sm:text-xl text-ink-soft">{lead}</p>}
+    {lead && <p class="mt-6 max-w-2xl text-lg sm:text-xl text-cream/75">{lead}</p>}
     <slot />
   </div>
 </section>

@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import Button from './Button.astro';
+import { site } from '../data/site';
 import { occasions } from '../data/occasions';
 
 const links = [
@@ -13,47 +14,47 @@ const path = Astro.url.pathname;
 const isActive = (href: string) => path.startsWith(href);
 ---
 
-<header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur-md">
+<header class="sticky top-0 z-40 border-b border-black/40 bg-wood/95 text-cream backdrop-blur-md">
   <div class="container-page flex h-16 items-center justify-between gap-4">
-    <a href="/" aria-label="Chopfnuss – zur Startseite"><Logo /></a>
+    <a href="/" aria-label={`${site.name} – zur Startseite`}><Logo /></a>
 
-    <nav aria-label="Hauptnavigation" class="hidden lg:flex items-center gap-7 text-[0.95rem] font-medium">
+    <nav aria-label="Hauptnavigation" class="hidden lg:flex items-center gap-7 text-[0.95rem] font-medium text-cream/85">
       <div class="group relative">
-        <button type="button" class="flex items-center gap-1 py-5 hover:text-berner" aria-haspopup="true">
+        <button type="button" class="flex items-center gap-1 py-5 hover:text-brass-2" aria-haspopup="true">
           Anlässe
           <svg class="size-4 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4Z"/></svg>
         </button>
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full w-64 rounded-2xl border border-line bg-card p-2 shadow-[0_10px_30px_-12px_rgb(28_27_24/.35)]">
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full w-72 rounded-2xl border border-white/10 bg-wood-2 p-2 shadow-[0_16px_40px_-12px_rgb(0_0_0/.7)]">
           {occasions.map((o) => (
-            <a href={`/${o.slug}/`} class="block rounded-xl px-4 py-2.5 hover:bg-paper-2">{o.nav}</a>
+            <a href={`/${o.slug}/`} class="block rounded-xl px-4 py-2.5 hover:bg-wood-3 hover:text-brass-2">{o.card.title}</a>
           ))}
         </div>
       </div>
       {links.map((l) => (
-        <a href={l.href} class:list={['hover:text-berner', isActive(l.href) && 'text-berner']} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+        <a href={l.href} class:list={['hover:text-brass-2', isActive(l.href) && 'text-brass-2']} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
 
     <div class="flex items-center gap-2">
       <div class="hidden sm:block">
-        <Button href="/anfrage/" class="!py-2.5 !px-5 text-[0.95rem]">Quiz anfragen</Button>
+        <Button href="/anfrage/" variant="brass" class="!py-2.5 !px-5 text-[0.95rem]">Quiz anfragen</Button>
       </div>
 
       <details class="lg:hidden relative group/menu">
-        <summary class="list-none cursor-pointer rounded-full border-2 border-ink px-4 py-2 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+        <summary class="list-none cursor-pointer rounded-full border-2 border-cream/40 px-4 py-2 text-sm font-semibold [&::-webkit-details-marker]:hidden">
           <span class="group-open/menu:hidden">Menü</span>
           <span class="hidden group-open/menu:inline">Schliessen</span>
         </summary>
-        <nav aria-label="Mobile Navigation" class="absolute right-0 top-[calc(100%+0.75rem)] w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-line bg-card p-3 shadow-[0_16px_40px_-12px_rgb(28_27_24/.4)]">
-          <p class="px-3 pt-1 pb-1 text-xs font-mono uppercase tracking-widest text-ink-soft">Anlässe</p>
+        <nav aria-label="Mobile Navigation" class="absolute right-0 top-[calc(100%+0.75rem)] w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-wood-2 p-3 shadow-[0_16px_40px_-12px_rgb(0_0_0/.7)]">
+          <p class="px-3 pt-1 pb-1 text-xs uppercase tracking-[0.2em] text-brass">Anlässe</p>
           {occasions.map((o) => (
-            <a href={`/${o.slug}/`} class="block rounded-lg px-3 py-2 hover:bg-paper-2">{o.nav}</a>
+            <a href={`/${o.slug}/`} class="block rounded-lg px-3 py-2 hover:bg-wood-3">{o.card.title}</a>
           ))}
-          <hr class="my-2 border-line" />
+          <hr class="my-2 border-white/10" />
           {links.map((l) => (
-            <a href={l.href} class="block rounded-lg px-3 py-2 hover:bg-paper-2">{l.label}</a>
+            <a href={l.href} class="block rounded-lg px-3 py-2 hover:bg-wood-3">{l.label}</a>
           ))}
-          <a href="/anfrage/" class="mt-2 block rounded-full bg-berner px-4 py-3 text-center font-semibold text-paper">Quiz anfragen</a>
+          <a href="/anfrage/" class="mt-2 block rounded-full bg-brass px-4 py-3 text-center font-semibold text-wood">Quiz anfragen</a>
         </nav>
       </details>
     </div>

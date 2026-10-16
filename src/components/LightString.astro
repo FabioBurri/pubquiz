@@ -1,0 +1,24 @@
+---
+// Lichterkette quer über den oberen Rand – Pub-Atmosphäre ohne Bierglas.
+interface Props { class?: string; bulbs?: number }
+const { class: cls = '', bulbs = 14 } = Astro.props;
+const w = 1200;
+const pts = Array.from({ length: bulbs }, (_, i) => {
+  const x = ((i + 0.5) / bulbs) * w;
+  // Position auf dem durchhängenden Kabel (3 quadratische Bögen)
+  const seg = w / 3;
+  const s = (x % seg) / seg;
+  const y = 10 + 96 * s * (1 - s);
+  return { x, y };
+});
+---
+
+<svg class:list={['pointer-events-none absolute inset-x-0 top-0 h-16 w-full', cls]} viewBox={`0 0 ${w} 64`} preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+  <path d={`M0 10 ${Array.from({ length: 3 }, (_, k) => `Q ${(k + 0.5) * (w / 3)} 58 ${(k + 1) * (w / 3)} 10`).join(' ')}`} fill="none" stroke="#0e0a08" stroke-width="1.5" />
+  {pts.map((p, i) => (
+    <g>
+      <circle cx={p.x} cy={p.y + 6} r="14" fill="var(--color-brass-2)" opacity=".18" class="bulb" style={`animation-delay:${(i % 5) * 0.6}s`} />
+      <ellipse cx={p.x} cy={p.y + 6} rx="3.4" ry="4.6" fill="#ffd98a" class="bulb" style={`animation-delay:${(i % 5) * 0.6}s`} />
+    </g>
+  ))}
+</svg>

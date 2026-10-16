@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // Platzhalter-Domain – vor dem Livegang durch die echte Domain ersetzen (auch in src/data/site.ts)
-  site: 'https://www.chopfnuss.ch',
+  site: 'https://www.chopfundchrage.ch',
   trailingSlash: 'always',
 
   vite: {

@@ -1,3 +1,8 @@
+import { packages, addons, formatCHF } from './site';
+
+const price = (id: string) => formatCHF(packages.find((p) => p.id === id)!.price);
+const nischenquiz = addons.find((a) => a.name === 'Nischenquiz')!.price;
+
 export type Occasion = {
   slug: string;
   nav: string;
@@ -23,7 +28,7 @@ export const occasions: Occasion[] = [
     },
     seoTitle: 'Pubquiz als Teamevent in Bern buchen',
     seoDescription:
-      'Pubquiz als Firmenevent in Bern: mit Insider-Runde über eure Firma, Quizmaster und Technik. Für 10–150 Personen, ab CHF 1’190. Jetzt unverbindlich anfragen.',
+      `Pubquiz als Firmenevent in Bern: mit Insider-Runde über eure Firma, Quizmaster und Technik. Für 10–150 Personen, ab ${price('feierabend')}. Jetzt unverbindlich anfragen.`,
     h1: 'Pubquiz als Teamevent in Bern',
     lead:
       'Kein Seilpark, keine Powerpoint-Spiele. Ein Pubquiz bringt Leute zusammen, die sonst nur per Mail miteinander reden. Wir bringen Fragen, Quizmaster und Technik mit. Ihr bringt das Team.',
@@ -51,7 +56,7 @@ export const occasions: Occasion[] = [
     },
     seoTitle: 'Pubquiz für Geburtstag & Freunde in Bern',
     seoDescription:
-      'Privates Pubquiz für Geburtstag, Freundeskreis oder WG-Fest in Bern. Mit Fragen über das Geburtstagskind, 8–25 Personen, 2 Stunden, ab CHF 590.',
+      `Privates Pubquiz für Geburtstag, Freundeskreis oder WG-Fest in Bern. Mit Fragen über das Geburtstagskind, 8–25 Personen, 2 Stunden, ab ${price('stammtisch')}.`,
     h1: 'Pubquiz für Geburtstag und Freundeskreis',
     lead:
       'Ein eigener Quizabend nur für eure Runde. Wir moderieren, ihr spielt. Und alle lernen etwas über das Geburtstagskind, das sie lieber nicht gewusst hätten.',
@@ -59,7 +64,7 @@ export const occasions: Occasion[] = [
       { title: 'Fragen über das Geburtstagskind', text: 'Erstes Auto, peinlichste Frisur, Lieblingslied mit 15. Ihr schickt uns Infos und Fotos, wir bauen daraus eine Runde.' },
       { title: 'Bei euch oder in der Bar', text: 'Im Wohnzimmer, im Garten oder in der Stammbar in der Altstadt. Wir kommen dorthin, wo ihr feiert.' },
       { title: 'Niveau nach Wunsch', text: 'Von gemütlich bis ehrgeizig. Wir passen die Fragen an, damit auch die Grosseltern mitraten können.' },
-      { title: 'Ihr müsst nichts organisieren', text: 'Antwortblätter, Stifte, Joker und ein Preis fürs Siegerteam sind dabei.' },
+      { title: 'Ihr müsst nichts organisieren', text: 'Fragen, Antwortblätter, Stifte und Joker bringen wir mit. Ihr bringt nur gute Laune und einen Teamnamen.' },
     ],
     sampleQuestions: [
       'In welchem Land hat Lea ihren ersten Sonnenbrand geholt?',
@@ -72,22 +77,22 @@ export const occasions: Occasion[] = [
   },
   {
     slug: 'polterabend',
-    nav: 'Polterabend & JGA',
+    nav: 'Polterabend',
     card: {
-      title: 'Polterabend & JGA',
+      title: 'Polterabend & Junggesellenabschied',
       text: 'Wie gut kennt ihr die Braut oder den Bräutigam wirklich? Eine Runde nur über die zukünftige Ehe, die andere über alles davor.',
     },
-    seoTitle: 'Pubquiz für Polterabend & JGA in Bern',
+    seoTitle: 'Pubquiz für Polterabend & Junggesellenabschied in Bern',
     seoDescription:
-      'Pubquiz als Programmpunkt für Polterabend oder JGA in Bern. Mit Fragen über Braut oder Bräutigam, Quizmaster und Preisen. Ab CHF 590.',
-    h1: 'Pubquiz für Polterabend und JGA',
+      `Pubquiz als Programmpunkt für Polterabend oder Junggesellenabschied in Bern. Mit Fragen über Braut oder Bräutigam und Quizmaster. Ab ${price('stammtisch')}.`,
+    h1: 'Pubquiz für Polterabend und Junggesellenabschied',
     lead:
       'Zwischen Aare-Böötle und Barhopping: Ein Quiz über die Hauptperson ist der Programmpunkt, über den nachher alle reden. Wir übernehmen Fragen und Moderation, ihr bestimmt den Ton.',
     points: [
       { title: 'Alles dreht sich um die Hauptperson', text: 'Wie haben sie sich kennengelernt? Wer hat zuerst «Ich liebe dich» gesagt? Die Antworten liefert ihr vorab, heimlich.' },
       { title: 'Ihr bestimmt, wie frech', text: 'Familientauglich oder eher nicht. Wir halten uns an eure Grenzen, versprochen.' },
       { title: 'Passt in jeden Tagesplan', text: '2 Stunden in einer Bar in der Altstadt, danach geht es weiter. Wir richten uns nach eurem Programm.' },
-      { title: 'Ein Erinnerungsstück', text: 'Auf Wunsch bekommt die Hauptperson das ausgefüllte Siegerblatt als Andenken.' },
+      { title: 'Ihr müsst nichts vorbereiten', text: 'Ausser ein paar heimlich gesammelten Anekdoten. Fragen, Material und Moderation bringen wir mit.' },
     ],
     sampleQuestions: [
       'Wie lautete Marcos erste Nachricht an Sarah? A) «Hoi» B) «Bist du die mit dem Hund?» C) Ein Foto von einem Fondue',
@@ -107,7 +112,7 @@ export const occasions: Occasion[] = [
     },
     seoTitle: 'Themenquiz & Nischenquiz in Bern buchen',
     seoDescription:
-      'Pubquiz zu einem Thema eurer Wahl: Harry Potter, Schweizer Fussball, 90er, Bern, Serien und mehr. Massgeschneiderte Fragen, in Bern moderiert. Aufpreis CHF 290.',
+      `Pubquiz zu einem Thema eurer Wahl: Harry Potter, Schweizer Fussball, 90er, Bern, Serien und mehr. Massgeschneiderte Fragen, in Bern moderiert. Aufpreis ${nischenquiz}.`,
     h1: 'Themenquiz: Ein Abend, ein Thema',
     lead:
       'Allgemeinwissen ist schön, ein Thema, bei dem alle mitreden können, ist schöner. Beim Nischenquiz drehen sich alle Runden um das, was eure Gruppe verbindet.',

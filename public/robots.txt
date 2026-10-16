@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 Disallow: /danke/
 
-Sitemap: https://www.chopfnuss.ch/sitemap-index.xml
+Sitemap: https://www.chopfundchrage.ch/sitemap-index.xml

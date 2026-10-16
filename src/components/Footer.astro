@@ -5,42 +5,42 @@ import { occasions } from '../data/occasions';
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-bottle text-paper/85 mt-24">
+<footer class="wood mt-24 text-cream/80">
   <div class="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
     <div class="sm:col-span-2 lg:col-span-1">
-      <Logo class="text-paper" />
+      <Logo class="text-cream" />
       <p class="mt-4 max-w-xs text-[0.95rem]">Private Pubquiz-Abende in {site.region}. Ihr bucht, wir bringen Fragen, Moderation und Technik mit.</p>
     </div>
     <div>
-      <p class="font-mono text-xs uppercase tracking-widest text-senf">Anlässe</p>
+      <p class="text-xs uppercase tracking-[0.2em] text-brass">Anlässe</p>
       <ul class="mt-4 space-y-2 text-[0.95rem]">
-        {occasions.map((o) => <li><a class="hover:text-paper hover:underline" href={`/${o.slug}/`}>{o.card.title}</a></li>)}
+        {occasions.map((o) => <li><a class="hover:text-brass-2" href={`/${o.slug}/`}>{o.card.title}</a></li>)}
       </ul>
     </div>
     <div>
-      <p class="font-mono text-xs uppercase tracking-widest text-senf">Infos</p>
+      <p class="text-xs uppercase tracking-[0.2em] text-brass">Infos</p>
       <ul class="mt-4 space-y-2 text-[0.95rem]">
-        <li><a class="hover:text-paper hover:underline" href="/ablauf/">Ablauf</a></li>
-        <li><a class="hover:text-paper hover:underline" href="/preise/">Preise</a></li>
-        <li><a class="hover:text-paper hover:underline" href="/faq/">Häufige Fragen</a></li>
-        <li><a class="hover:text-paper hover:underline" href="/ueber-uns/">Über uns</a></li>
+        <li><a class="hover:text-brass-2" href="/ablauf/">Ablauf</a></li>
+        <li><a class="hover:text-brass-2" href="/preise/">Preise</a></li>
+        <li><a class="hover:text-brass-2" href="/faq/">Häufige Fragen</a></li>
+        <li><a class="hover:text-brass-2" href="/ueber-uns/">Über uns</a></li>
       </ul>
     </div>
     <div>
-      <p class="font-mono text-xs uppercase tracking-widest text-senf">Kontakt</p>
+      <p class="text-xs uppercase tracking-[0.2em] text-brass">Kontakt</p>
       <ul class="mt-4 space-y-2 text-[0.95rem]">
-        <li><a class="hover:text-paper hover:underline" href={`mailto:${site.email}`}>{site.email}</a></li>
-        <li><a class="hover:text-paper hover:underline" href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phoneDisplay}</a></li>
+        <li><a class="hover:text-brass-2" href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a class="hover:text-brass-2" href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phoneDisplay}</a></li>
         <li>{site.city}, Schweiz</li>
       </ul>
     </div>
   </div>
-  <div class="border-t border-paper/15">
-    <div class="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-sm text-paper/60">
+  <div class="border-t border-white/10">
+    <div class="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-sm text-cream/55">
       <p>© {year} {site.name}</p>
       <p class="flex gap-5">
-        <a class="hover:text-paper" href="/impressum/">Impressum</a>
-        <a class="hover:text-paper" href="/datenschutz/">Datenschutz</a>
+        <a class="hover:text-cream" href="/impressum/">Impressum</a>
+        <a class="hover:text-cream" href="/datenschutz/">Datenschutz</a>
       </p>
     </div>
   </div>

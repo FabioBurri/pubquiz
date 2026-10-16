@@ -17,6 +17,6 @@ export const steps = [
   {
     title: 'Quizabend',
     short: 'Wir kommen, moderieren, werten aus. Ihr spielt.',
-    long: 'Wir sind 45 Minuten vorher vor Ort, bauen auf, führen durch den Abend und küren das Siegerteam.',
+    long: 'Wir sind 45 Minuten vorher vor Ort, bauen auf, führen durch den Abend und lösen am Schluss die Rangliste auf.',
   },
 ];

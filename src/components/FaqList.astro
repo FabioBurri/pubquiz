@@ -4,12 +4,12 @@ interface Props { items: Faq[] }
 const { items } = Astro.props;
 ---
 
-<div class="divide-y divide-line border-y border-line">
+<div class="divide-y divide-line border-y-[3px] border-double border-line">
   {items.map((f, i) => (
     <details class="group py-1" open={i === 0}>
       <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-4 [&::-webkit-details-marker]:hidden">
-        <h3 class="font-display text-lg sm:text-xl font-semibold tracking-tight">{f.q}</h3>
-        <span class="mt-1 grid size-7 shrink-0 place-items-center rounded-full border-2 border-ink text-lg leading-none transition group-open:rotate-45 group-open:bg-ink group-open:text-paper" aria-hidden="true">+</span>
+        <h3 class="text-lg sm:text-xl">{f.q}</h3>
+        <span class="mt-1 grid size-7 shrink-0 place-items-center rounded-full border-2 border-wood text-lg leading-none transition group-open:rotate-45 group-open:bg-wood group-open:text-brass-2" aria-hidden="true">+</span>
       </summary>
       <p class="pb-5 pr-12 text-ink-soft">{f.a}</p>
     </details>

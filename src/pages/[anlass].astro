@@ -35,15 +35,15 @@ const others = occasions.filter((x) => x.slug !== o.slug);
 >
   <PageHeader label={`Anlass · ${o.nav}`} title={o.h1} lead={o.lead} crumbs={[{ name: o.nav, path }]}>
     <div class="mt-9 flex flex-wrap gap-3">
-      <Button href={`/anfrage/?anlass=${o.slug}`}>Jetzt anfragen</Button>
-      <Button href="#preis" variant="ghost">Preis ansehen</Button>
+      <Button href={`/anfrage/?anlass=${o.slug}`} variant="brass">Jetzt anfragen</Button>
+      <Button href="#preis" variant="ghost-light">Preis ansehen</Button>
     </div>
   </PageHeader>
 
   <section class="container-page mt-20 grid gap-x-12 gap-y-10 sm:grid-cols-2">
     {o.points.map((p, i) => (
-      <div class="border-t-2 border-ink pt-5">
-        <span class="font-mono text-sm text-berner">{String(i + 1).padStart(2, '0')}</span>
+      <div class="rule-double pt-5">
+        <span class="font-hand text-2xl text-berner">{i + 1}.</span>
         <h2 class="mt-1 text-2xl">{p.title}</h2>
         <p class="mt-2 text-ink-soft text-lg">{p.text}</p>
       </div>
@@ -51,17 +51,17 @@ const others = occasions.filter((x) => x.slug !== o.slug);
   </section>
 
   <section class="container-page mt-20">
-    <div class="ruled rounded-[2rem] border-2 border-ink bg-card p-7 sm:p-12">
-      <RoundLabel>{o.sampleNote}</RoundLabel>
+    <div class="chalkboard rounded-xl p-8 sm:p-14">
+      <p class="font-hand text-2xl text-brass-2">{o.sampleNote}</p>
       <ol class="mt-6 space-y-5">
         {o.sampleQuestions.map((q, i) => (
           <li class="flex gap-4">
-            <span class="grid size-9 shrink-0 place-items-center rounded-full border-2 border-ink font-mono font-bold">{i + 1}</span>
-            <p class="pt-1 font-display text-xl sm:text-2xl font-semibold leading-snug">{q}</p>
+            <span class="font-hand text-3xl leading-none text-brass-2 pt-1">{i + 1}.</span>
+            <p class="font-hand text-[1.55rem] sm:text-[1.8rem] leading-snug">{q}</p>
           </li>
         ))}
       </ol>
-      <p class="mt-8 text-sm text-ink-soft">Namen und Details sind erfunden. Eure Fragen schreiben wir nach dem Vorgespräch neu.</p>
+      <p class="mt-8 text-sm text-chalk-text/60">Namen und Details sind erfunden. Eure Fragen schreiben wir nach dem Vorgespräch neu.</p>
     </div>
   </section>
 
@@ -73,7 +73,7 @@ const others = occasions.filter((x) => x.slug !== o.slug);
       <h3 class="mt-10 text-xl">So läuft es ab</h3>
       <ol class="mt-4 space-y-3">
         {steps.map((s, i) => (
-          <li class="flex gap-3"><span class="font-mono font-bold text-berner">{i + 1}.</span><span><strong>{s.title}:</strong> <span class="text-ink-soft">{s.short}</span></span></li>
+          <li class="flex gap-3"><span class="font-hand text-xl leading-tight text-berner">{i + 1}.</span><span><strong>{s.title}:</strong> <span class="text-ink-soft">{s.short}</span></span></li>
         ))}
       </ol>
     </div>
@@ -92,7 +92,7 @@ const others = occasions.filter((x) => x.slug !== o.slug);
     <RoundLabel>Weitere Anlässe</RoundLabel>
     <div class="mt-6 grid gap-4 sm:grid-cols-3">
       {others.map((x) => (
-        <a href={`/${x.slug}/`} class="rounded-2xl border-2 border-ink/10 bg-card p-5 font-display text-lg font-semibold hover:border-ink">{x.card.title} <span aria-hidden="true">→</span></a>
+        <a href={`/${x.slug}/`} class="menucard rounded-xl p-5 font-display text-lg hover:border-brass">{x.card.title} <span aria-hidden="true">→</span></a>
       ))}
     </div>
   </section>

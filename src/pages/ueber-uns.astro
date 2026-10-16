@@ -3,34 +3,63 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import RoundLabel from '../components/RoundLabel.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Silhouette, { type Hair } from '../components/Silhouette.astro';
+import { site } from '../data/site';
 import { breadcrumbSchema } from '../lib/schema';
 
-// Platzhalter: echte Namen, Fotos und Texte einsetzen. Echte Gesichter verkaufen besser als jede Illustration.
-const team = [
-  { name: 'Vorname Nachname', role: 'Quizmaster & Fragenschreiber', fact: 'Weiss alles über Eishockey, nichts über Pflanzen.', initials: 'VN' },
-  { name: 'Vorname Nachname', role: 'Quizmasterin & Organisation', fact: 'Hat noch nie eine Musikrunde verloren.', initials: 'VN' },
+// Silhouetten sind Platzhalter – später durch echte Fotos ersetzen.
+const team: { first: string; last: string; nick: string; role: string; text: string; hair: Hair; bg: string; glasses?: boolean }[] = [
+  {
+    first: 'Pascale', last: 'Beuggert', nick: 'Die erste Frage',
+    role: 'Idee & Quizmasterin',
+    text: 'Alles begann mit ihrer Frage: «Warum machen wir das eigentlich nicht selbst?» Seither sorgt sie dafür, dass aus Ideen auch Quizabende werden.',
+    hair: 'braid', bg: '#d4a548',
+  },
+  {
+    first: 'Simon', last: 'Bürgisser', nick: 'Der Schätzfragen-König',
+    role: 'Finanzen & Organisation',
+    text: 'Liegt bei Schätzfragen erschreckend oft auf die Kommastelle richtig. Kümmert sich um Offerten, Rechnungen und darum, dass alles aufgeht.',
+    hair: 'side-part', bg: '#8fa98f',
+  },
+  {
+    first: 'Lars', last: 'Tschannen', nick: 'Der Punktezähler',
+    role: 'Finanzen & Organisation',
+    text: 'Zählt Punkte, Franken und Minuten bis zur Pause. Trägt den Vokuhila aus Überzeugung, nicht aus Versehen.',
+    hair: 'mullet', bg: '#c96a4f',
+  },
+  {
+    first: 'Fabio', last: 'Burri', nick: 'Der Telefonjoker',
+    role: 'Website & Technik',
+    text: 'Baut die Website, rettet den Beamer und wird angerufen, wenn nichts mehr geht. Würde eigentlich am liebsten selbst mitspielen.',
+    hair: 'quiff', bg: '#d9c9a8', glasses: true,
+  },
 ];
 ---
 
 <BaseLayout
-  title="Über uns: Die Leute hinter Chopfnuss"
-  description="Chopfnuss ist ein kleines Team aus Bern, das private Pubquiz-Abende schreibt und moderiert. Lernt die Quizmaster kennen."
+  title={`Über uns: Die Leute hinter ${site.name}`}
+  description={`${site.name} sind Pascale, Simon, Lars und Fabio aus Bern. Wir schreiben und moderieren private Pubquiz-Abende. Lernt uns kennen.`}
   jsonLd={[breadcrumbSchema([{ name: 'Über uns', path: '/ueber-uns/' }])]}
 >
   <PageHeader
     label="Über uns"
-    title="Wir stellen die Fragen. Seit wir denken können."
-    lead="Chopfnuss ist ein kleines Team aus Bern. Wir haben jahrelang selbst an Pubquizzen mitgespielt und irgendwann angefangen, eigene zu schreiben. Heute machen wir das für andere."
+    title="Vier Köpfe, ein Quiz."
+    lead={`${site.name} sind vier Leute aus Bern. Wir haben jahrelang selbst an Pubquizzen mitgespielt und irgendwann angefangen, eigene zu schreiben. Heute machen wir das für euch.`}
     crumbs={[{ name: 'Über uns', path: '/ueber-uns/' }]}
   />
 
-  <section class="container-page mt-20 grid gap-6 sm:grid-cols-2">
-    {team.map((m, i) => (
-      <article class="rounded-[2rem] border-2 border-ink/10 bg-card p-7">
-        <div class:list={['grid aspect-[4/3] place-items-center rounded-2xl font-display text-6xl font-extrabold', i === 0 ? 'bg-bottle text-paper' : 'bg-senf text-ink']} aria-hidden="true">{m.initials}</div>
-        <h2 class="mt-6 text-2xl">{m.name}</h2>
-        <p class="text-berner font-semibold">{m.role}</p>
-        <p class="mt-2 text-ink-soft">{m.fact}</p>
+  <section class="container-page mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {team.map((m) => (
+      <article class="menucard flex flex-col overflow-hidden rounded-[1.25rem]">
+        <div class="aspect-square overflow-hidden">
+          <Silhouette hair={m.hair} bg={m.bg} glasses={m.glasses} label={`Platzhalter-Porträt von ${m.first} ${m.last}`} />
+        </div>
+        <div class="p-6">
+          <p class="font-hand text-xl text-berner">«{m.nick}»</p>
+          <h2 class="mt-0.5 text-2xl">{m.first} {m.last}</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-[0.15em] text-ink-soft">{m.role}</p>
+          <p class="mt-3 text-ink-soft">{m.text}</p>
+        </div>
       </article>
     ))}
   </section>
@@ -38,12 +67,12 @@ const team = [
   <section class="container-page mt-20 grid gap-10 lg:grid-cols-[1fr_1.6fr]">
     <div>
       <RoundLabel>Wofür wir stehen</RoundLabel>
-      <h2 class="mt-3 text-3xl sm:text-4xl">Drei Regeln für jedes Quiz</h2>
+      <h2 class="mt-3 text-3xl sm:text-4xl">Drei Hausregeln für jedes Quiz</h2>
     </div>
     <ol class="space-y-8">
-      <li class="border-t-2 border-ink pt-5"><h3 class="text-xl">Niemand soll sich dumm fühlen.</h3><p class="mt-2 text-ink-soft">Gute Fragen lassen sich auch mit Logik, Bauchgefühl oder Teamwork lösen.</p></li>
-      <li class="border-t-2 border-ink pt-5"><h3 class="text-xl">Jede Gruppe bekommt ihr eigenes Quiz.</h3><p class="mt-2 text-ink-soft">Wir recyceln keine Fragebögen. Was ihr spielt, wurde für euch geschrieben.</p></li>
-      <li class="border-t-2 border-ink pt-5"><h3 class="text-xl">Spannend bis zur letzten Frage.</h3><p class="mt-2 text-ink-soft">Mit Zwischenständen, Jokern und einem Finale, bei dem auch Platz 3 noch gewinnen kann.</p></li>
+      <li class="rule-double pt-5"><h3 class="text-xl">Niemand soll sich dumm fühlen.</h3><p class="mt-2 text-ink-soft">Gute Fragen lassen sich auch mit Logik, Bauchgefühl oder Teamwork lösen.</p></li>
+      <li class="rule-double pt-5"><h3 class="text-xl">Jede Gruppe bekommt ihr eigenes Quiz.</h3><p class="mt-2 text-ink-soft">Wir recyceln keine Fragebögen. Was ihr spielt, wurde für euch geschrieben.</p></li>
+      <li class="rule-double pt-5"><h3 class="text-xl">Spannend bis zur letzten Frage.</h3><p class="mt-2 text-ink-soft">Mit Zwischenständen, Jokern und einem Finale, bei dem auch Platz 3 noch gewinnen kann.</p></li>
     </ol>
   </section>
 

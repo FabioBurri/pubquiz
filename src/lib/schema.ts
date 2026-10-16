@@ -27,10 +27,7 @@ export function organizationSchema() {
       addressRegion: 'BE',
       addressCountry: 'CH',
     },
-    areaServed: [
-      { '@type': 'City', name: 'Bern' },
-      { '@type': 'AdministrativeArea', name: 'Kanton Bern' },
-    ],
+    areaServed: { '@type': 'City', name: 'Bern' },
     makesOffer: packages.map((p) => ({
       '@type': 'Offer',
       name: `Pubquiz «${p.name}»`,

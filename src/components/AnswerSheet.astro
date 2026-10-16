@@ -1,36 +1,43 @@
 ---
-// Hero-Element: Eine Multiple-Choice-Frage als Antwortblatt, die richtige Antwort wird von Hand eingekreist.
+import { site } from '../data/site';
+// Hero-Element: Eine Quizfrage auf der Kreidetafel, die richtige Antwort wird mit Kreide eingekreist.
 const options = [
   { letter: 'A', text: 'Jemand aus der Runde. Um 1 Uhr nachts, mit 40 offenen Wikipedia-Tabs.' },
   { letter: 'B', text: 'Niemand. Es bleibt beim «Mir sötte mau...».' },
-  { letter: 'C', text: 'Chopfnuss. Fragen, Moderation, Technik, Siegerehrung.', correct: true },
+  { letter: 'C', text: `${site.name}. Fragen, Moderation, Technik, Auswertung.`, correct: true },
 ];
 ---
 
-<figure class="relative mx-auto w-full max-w-md rotate-[1.5deg]">
-  <div class="absolute inset-0 translate-x-2.5 translate-y-3 rounded-2xl bg-bottle" aria-hidden="true"></div>
-  <div class="ruled relative rounded-2xl border-2 border-ink bg-card px-6 pt-6 pb-7 sm:px-8">
-    <div class="flex items-center justify-between font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-soft">
+<figure class="relative mx-auto w-full max-w-md rotate-[1.2deg]">
+  <!-- Aufhängung -->
+  <svg class="absolute -top-10 left-1/2 h-11 w-40 -translate-x-1/2" viewBox="0 0 160 44" aria-hidden="true">
+    <path d="M20 44 80 4 140 44" fill="none" stroke="#0e0a08" stroke-width="2" />
+    <circle cx="80" cy="4" r="3.5" fill="var(--color-brass)" />
+  </svg>
+  <div class="chalkboard relative rounded-lg px-7 pt-8 pb-8 sm:px-9">
+    <div class="flex items-center justify-between font-hand text-lg text-chalk-text/70">
       <span>Runde 1 · Frage 1</span>
-      <span>Team: ________</span>
+      <span>Team: ______</span>
     </div>
-    <p class="mt-5 font-display text-2xl font-bold leading-snug">Wer organisiert euer nächstes Pubquiz?</p>
-    <ol class="mt-5 space-y-3">
+    <p class="mt-4 font-hand text-[2rem] leading-tight">Wer organisiert euer nächstes Pubquiz?</p>
+    <ol class="mt-5 space-y-3.5">
       {options.map((o) => (
         <li class="relative flex gap-3">
-          <span class="grid size-7 shrink-0 place-items-center rounded-full border-2 border-ink font-mono text-sm font-bold">{o.letter}</span>
-          <span class:list={['pt-0.5 leading-snug', o.correct ? 'font-semibold' : 'text-ink-soft']}>{o.text}</span>
+          <span class="grid size-7 shrink-0 place-items-center rounded-full border-2 border-chalk-text/70 font-hand text-lg leading-none">{o.letter}</span>
+          <span class:list={['pt-0.5 leading-snug', o.correct ? 'text-chalk-text font-semibold' : 'text-chalk-text/70']}>{o.text}</span>
           {o.correct && (
-            <svg class="scribble pointer-events-none absolute -inset-x-3 -inset-y-2.5 h-[calc(100%+1.25rem)] w-[calc(100%+1.5rem)] text-berner" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M18 40C14 18 80 6 160 7c80 1 132 9 131 31-1 22-70 27-150 26C60 63 8 56 12 33 15 18 46 11 70 10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <svg class="scribble pointer-events-none absolute -inset-x-3 -inset-y-2.5 h-[calc(100%+1.25rem)] w-[calc(100%+1.5rem)] text-brass-2" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M18 40C14 18 80 6 160 7c80 1 132 9 131 31-1 22-70 27-150 26C60 63 8 56 12 33 15 18 46 11 70 10" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" opacity=".9"/>
             </svg>
           )}
         </li>
       ))}
     </ol>
-    <figcaption class="mt-6 flex items-center justify-between border-t border-dashed border-line pt-4 text-sm">
-      <span class="text-ink-soft">Richtige Antwort</span>
-      <span class="font-mono font-bold text-berner">C · 1 Punkt</span>
+    <figcaption class="mt-7 flex items-center justify-between border-t border-dashed border-chalk-text/25 pt-4">
+      <span class="text-sm text-chalk-text/60">Richtige Antwort</span>
+      <span class="font-hand text-2xl text-brass-2">C · 1 Punkt</span>
     </figcaption>
+    <!-- Kreidestück auf der Leiste -->
+    <span class="absolute -bottom-1 right-10 h-2 w-9 rounded-sm bg-[#f1efe7] shadow" aria-hidden="true"></span>
   </div>
 </figure>

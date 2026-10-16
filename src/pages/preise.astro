@@ -5,7 +5,7 @@ import RoundLabel from '../components/RoundLabel.astro';
 import PackageCard from '../components/PackageCard.astro';
 import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { packages, addons, priceNotes } from '../data/site';
+import { packages, addons, priceNotes, startPrice, formatCHF } from '../data/site';
 import { faqsFor } from '../data/faq';
 import { faqSchema, breadcrumbSchema } from '../lib/schema';
 
@@ -13,8 +13,8 @@ const priceFaqs = faqsFor('preise');
 ---
 
 <BaseLayout
-  title="Preise: Pubquiz in Bern ab CHF 590"
-  description="Pubquiz-Pakete in Bern: Stammtisch (8–25 Pers.) CHF 590, Feierabend (bis 60 Pers.) CHF 1’190, Grosse Runde (60–150 Pers.) ab CHF 1’890. Inkl. Fragen, Moderation, Material."
+  title={`Preise: Pubquiz in Bern ab ${startPrice}`}
+  description={`Pubquiz-Pakete in Bern: ${packages.map((p) => `${p.name} (${p.people}) ${p.priceFrom ? 'ab ' : ''}${formatCHF(p.price)}`).join(', ')}. Inkl. Fragen, Moderation, Material.`}
   jsonLd={[faqSchema(priceFaqs), breadcrumbSchema([{ name: 'Preise', path: '/preise/' }])]}
 >
   <PageHeader
@@ -39,7 +39,7 @@ const priceFaqs = faqsFor('preise');
       <table class="w-full text-left">
         <caption class="sr-only">Zusatzoptionen und Preise</caption>
         <thead>
-          <tr class="border-b-2 border-ink font-mono text-xs uppercase tracking-widest text-ink-soft">
+          <tr class="border-b-2 border-ink font-semibold text-xs uppercase tracking-widest text-ink-soft">
             <th scope="col" class="py-3 pr-4 font-normal">Option</th>
             <th scope="col" class="py-3 text-right font-normal">Preis</th>
           </tr>
@@ -48,7 +48,7 @@ const priceFaqs = faqsFor('preise');
           {addons.map((a) => (
             <tr class="border-b border-line align-top">
               <th scope="row" class="py-4 pr-4 font-normal">
-                <span class="block font-display text-lg font-semibold">{a.name}</span>
+                <span class="block font-display text-lg">{a.name}</span>
                 <span class="block text-ink-soft text-[0.95rem]">{a.note}</span>
               </th>
               <td class="py-4 text-right font-semibold whitespace-nowrap">{a.price}</td>

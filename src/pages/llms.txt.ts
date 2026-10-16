@@ -13,12 +13,12 @@ export const GET: APIRoute = () => {
 ${site.name} ist ein Anbieter von privaten, buchbaren Pubquiz-Abenden in ${site.region} (Schweiz). Es gibt keine öffentlichen Quiz-Termine: Gruppen buchen einen eigenen Quizabend, ${site.name} schreibt die Fragen, moderiert und wertet aus. Sprache: Deutsch.
 
 ## Kernfakten
-- Angebot: Pubquiz als Teamevent, Firmenanlass, Weihnachtsessen, Geburtstag, Polterabend/JGA, Themen- und Nischenquiz
-- Einsatzgebiet: Stadt Bern und Region Bern; Durchführung an einem Ort nach Wahl der Kundschaft (Bar, Firma, privat)
+- Angebot: Pubquiz als Teamevent, Firmenanlass, Weihnachtsessen, Geburtstag, Polterabend/Junggesellenabschied, Themen- und Nischenquiz
+- Einsatzgebiet: Stadt Bern und nähere Umgebung (keine Einsätze ausserhalb); Durchführung an einem Ort nach Wahl der Kundschaft (Bar, Firma, privat)
 - Gruppengrösse: 8 bis 150 Personen
 - Dauer: 2 bis 3 Stunden
 - Besonderheit: Insider-Runde mit Fragen über die Gruppe selbst; Nischenquiz zu einem Wunschthema
-- Buchung: mindestens 3 Wochen im Voraus, Antwort auf Anfragen innert 24 Stunden
+- Antwort auf Anfragen innert 24 Stunden
 - Kontakt: ${site.email}, ${site.phoneDisplay}
 
 ## Preise (CHF)

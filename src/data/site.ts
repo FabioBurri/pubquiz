@@ -4,16 +4,16 @@
  */
 
 export const site = {
-  name: 'Chopfnuss',
+  name: 'Chopf & Chrage',
   tagline: 'Pubquiz zum Buchen. In Bern.',
-  url: 'https://www.chopfnuss.ch',
-  email: 'hallo@chopfnuss.ch',
+  url: 'https://www.chopfundchrage.ch',
+  email: 'hallo@chopfundchrage.ch',
   phone: '+41 31 000 00 00',
   phoneDisplay: '031 000 00 00',
   city: 'Bern',
-  region: 'Stadt und Region Bern',
+  region: 'Bern und Umgebung',
   description:
-    'Chopfnuss organisiert und moderiert private Pubquiz-Abende in Bern: für Firmen, Freundeskreise, Geburtstage und Polterabende. Mit eigenen Insider-Fragen, Quizmaster und Technik. Ab CHF 590.',
+    'Chopf & Chrage organisiert und moderiert private Pubquiz-Abende in Bern: für Firmen, Freundeskreise, Geburtstage und Polterabende. Mit eigenen Insider-Fragen, Quizmaster und Technik. Ab CHF 1’050.',
   // Web3Forms Access Key (gratis auf web3forms.com). Leer = Formular sendet nicht.
   web3formsKey: '',
   founded: '2026',
@@ -39,7 +39,7 @@ export const packages: Package[] = [
     id: 'stammtisch',
     name: 'Stammtisch',
     forWhom: 'Für Freundeskreis, Geburtstag und WG-Fest',
-    price: 590,
+    price: 1050,
     people: '8–25 Personen',
     minPeople: 8,
     maxPeople: 25,
@@ -50,14 +50,13 @@ export const packages: Package[] = [
       'Fragen auf eure Gruppe abgestimmt',
       'Antwortblätter, Stifte, Joker-Karten',
       'Live-Auswertung und Rangliste',
-      'Kleiner Preis fürs Siegerteam',
     ],
   },
   {
     id: 'feierabend',
     name: 'Feierabend',
     forWhom: 'Für Teamevents, Vereine und Polterabende',
-    price: 1190,
+    price: 1790,
     people: 'bis 60 Personen',
     minPeople: 10,
     maxPeople: 60,
@@ -76,7 +75,7 @@ export const packages: Package[] = [
     id: 'grosse-runde',
     name: 'Grosse Runde',
     forWhom: 'Für Firmenanlässe und Weihnachtsessen',
-    price: 1890,
+    price: 2690,
     priceFrom: true,
     people: '60–150 Personen',
     minPeople: 60,
@@ -87,25 +86,26 @@ export const packages: Package[] = [
       'Alles aus «Feierabend»',
       'Zwei Quizmaster',
       'Auswertung mit Live-Rangliste auf der Leinwand',
-      'Pokal mit Gravur fürs Siegerteam',
       'Abstimmung mit Location und Catering',
     ],
   },
 ];
 
 export const addons = [
-  { name: 'Zusätzliche Insider-Runde', price: 'CHF 180', note: '8–10 Fragen über eure Firma, euer Team oder das Geburtstagskind' },
-  { name: 'Nischenquiz', price: 'CHF 290', note: 'Alle Runden zu einem Thema: Harry Potter, YB, Fondue, 90er – ihr sagt es' },
-  { name: 'Verlängerung', price: 'CHF 120', note: 'pro zusätzliche 30 Minuten' },
-  { name: 'Technik-Set fürs Paket Stammtisch', price: 'CHF 80', note: 'Mikrofon und Lautsprecher' },
-  { name: 'Anfahrt ausserhalb Region Bern', price: 'CHF 0.80 / km', note: 'ab 25 km Distanz zur Stadt Bern' },
+  { name: 'Zusätzliche Insider-Runde', price: 'CHF 240', note: '8–10 Fragen über eure Firma, euer Team oder das Geburtstagskind' },
+  { name: 'Nischenquiz', price: 'CHF 390', note: 'Alle Runden zu einem Thema: Harry Potter, YB, Fondue, 90er – ihr sagt es' },
+  { name: 'Verlängerung', price: 'CHF 190', note: 'pro zusätzliche 30 Minuten' },
+  { name: 'Technik-Set fürs Paket Stammtisch', price: 'CHF 120', note: 'Mikrofon und Lautsprecher' },
 ];
 
 export const priceNotes = [
   'Alle Preise in CHF, inkl. Vorbereitung, Fragen, Moderation und Material.',
   'Location, Essen und Getränke sind nicht inbegriffen. Gerne empfehlen wir passende Bars und Räume in Bern.',
-  'Buchung mindestens 3 Wochen im Voraus, für Insider-Runden ideal 4–6 Wochen.',
+  'Wir sind in der Stadt Bern und der näheren Umgebung unterwegs.',
 ];
 
 export const formatCHF = (n: number) =>
   'CHF ' + n.toLocaleString('de-CH').replace(/,/g, '’');
+
+/** Einstiegspreis, z.B. «CHF 1’050» – für Texte wie «ab CHF …» */
+export const startPrice = formatCHF(packages[0].price);

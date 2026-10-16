@@ -1,0 +1,77 @@
+---
+// Platzhalter-Porträt als Silhouette, bis echte Fotos da sind.
+// Haare in einem etwas helleren Ton, damit die Frisur erkennbar bleibt.
+export type Hair = 'braid' | 'side-part' | 'mullet' | 'quiff';
+interface Props { hair: Hair; bg: string; glasses?: boolean; label: string }
+const { hair, bg, glasses = false, label } = Astro.props;
+const skin = '#1e1612';
+const hairColor = '#4b3427';
+const female = hair === 'braid';
+---
+
+<svg viewBox="0 0 200 200" class="block h-full w-full" role="img" aria-label={label}>
+  <rect width="200" height="200" fill={bg} />
+  <ellipse cx="100" cy="72" rx="92" ry="78" fill="#fff" opacity=".14" />
+
+  <!-- Haare hinten -->
+  <g fill={hairColor}>
+    {hair === 'braid' && (
+      <path d="M72 98C67 60 82 48 100 48s33 12 28 50l-2 18c-8-6-44-6-52 0Z" />
+    )}
+    {hair === 'mullet' && (
+      <path d="M74 90 69 150c6 7 21 4 23-2h16c2 6 17 9 23 2l-5-60Z" />
+    )}
+  </g>
+
+  <!-- Körper -->
+  <g fill={skin}>
+    {female
+      ? <path d="M42 200c0-32 24-48 58-48s58 16 58 48Z" />
+      : <path d="M30 200c0-36 30-52 70-52s70 16 70 52Z" />}
+    <rect x={female ? 91 : 87} y="110" width={female ? 18 : 26} height="44" rx="8" />
+    {female
+      ? <path d="M76 88c0-22 10-28 24-28s24 6 24 28c0 20-12 36-24 36S76 108 76 88Z" />
+      : <ellipse cx="100" cy="90" rx="27" ry="33" />}
+    {!female && (
+      <>
+        <ellipse cx="73" cy="94" rx="5" ry="8" />
+        <ellipse cx="127" cy="94" rx="5" ry="8" />
+      </>
+    )}
+  </g>
+
+  <!-- Haare vorne -->
+  <g fill={hairColor}>
+    {hair === 'braid' && (
+      <>
+        <!-- Mittelscheitel, Haare rahmen das Gesicht -->
+        <path d="M74 94c-3-28 10-42 26-42s29 14 26 42c-3-16-12-26-24-29l-2 0-2 0c-12 3-21 13-24 29Z" />
+        <!-- Zopf über die rechte Schulter -->
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => {
+          const cx = 121 + i * 2.2;
+          const cy = 116 + i * 10;
+          return <ellipse cx={cx} cy={cy} rx={8.5 - i * 0.5} ry="6.8" transform={`rotate(${i % 2 ? 22 : -22} ${cx} ${cy})`} />;
+        })}
+        <rect x="131" y="184" width="8" height="4" rx="1.5" fill={bg} opacity=".9" />
+        <path d="M131 188l-3 10 7-4 6 4-2-10Z" />
+      </>
+    )}
+    {hair === 'side-part' && (
+      <path d="M72 90c-3-28 10-40 30-40 19 0 31 11 27 38-2-10-7-16-14-19-12 4-26 5-38 2-2 5-4 11-5 19Z" />
+    )}
+    {hair === 'mullet' && (
+      <path d="M72 86c-2-24 10-34 28-34s30 10 28 34c-3-8-7-13-13-15l-3 4-4-5-4 5-4-5-4 5-3-4c-8 3-14 8-17 15Z" />
+    )}
+    {hair === 'quiff' && (
+      <path d="M72 90c-4-24 4-38 18-43 6-10 26-9 31-1 12 6 13 22 8 44-3-12-10-18-19-20-12-1-26 0-34 4-2 5-3 10-4 16Z" />
+    )}
+  </g>
+
+  {glasses && (
+    <g fill="none" stroke={bg} stroke-width="2.6">
+      <rect x="78" y="85" width="18" height="12" rx="4" />
+      <rect x="104" y="85" width="18" height="12" rx="4" />
+      <path d="M96 90h8" />
+    </g>
+  )}
+</svg>

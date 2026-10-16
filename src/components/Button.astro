@@ -1,15 +1,16 @@
 ---
 interface Props {
   href: string;
-  variant?: 'primary' | 'ghost' | 'light';
+  variant?: 'primary' | 'ghost' | 'ghost-light' | 'brass';
   class?: string;
 }
 const { href, variant = 'primary', class: cls = '' } = Astro.props;
 
 const styles = {
-  primary: 'bg-berner text-paper hover:bg-berner-dark shadow-[0_3px_0_var(--color-ink)] hover:shadow-[0_1px_0_var(--color-ink)] hover:translate-y-[2px]',
-  ghost: 'border-2 border-ink text-ink hover:bg-ink hover:text-paper',
-  light: 'bg-paper text-ink hover:bg-senf shadow-[0_3px_0_var(--color-ink)] hover:shadow-[0_1px_0_var(--color-ink)] hover:translate-y-[2px]',
+  primary: 'bg-berner text-cream hover:bg-berner-dark shadow-[0_3px_0_var(--color-wood)] hover:shadow-[0_1px_0_var(--color-wood)] hover:translate-y-[2px]',
+  brass: 'bg-brass text-wood hover:bg-brass-2 shadow-[0_3px_0_#7a5a1c] hover:shadow-[0_1px_0_#7a5a1c] hover:translate-y-[2px]',
+  ghost: 'border-2 border-wood text-wood hover:bg-wood hover:text-cream',
+  'ghost-light': 'border-2 border-cream/50 text-cream hover:border-brass hover:text-brass-2',
 };
 ---
 

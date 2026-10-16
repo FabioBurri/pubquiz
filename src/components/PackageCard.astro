@@ -6,32 +6,33 @@ const { pkg, tilt = 0 } = Astro.props;
 
 <article
   class:list={[
-    'relative flex flex-col rounded-[1.75rem] border-2 p-7 pt-9',
-    pkg.featured ? 'border-ink bg-bottle text-paper' : 'border-ink/15 bg-card',
+    'relative flex flex-col rounded-[1.25rem] p-7 pt-9',
+    pkg.featured ? 'pubgreen border-2 border-brass' : 'menucard',
   ]}
 >
   {pkg.featured && (
-    <span class="absolute -top-3.5 left-7 rounded-full bg-senf px-3 py-1 font-mono text-[0.7rem] uppercase tracking-widest text-ink">Meistgebucht</span>
+    <span class="absolute -top-3.5 left-7 rounded-[3px] bg-brass px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-wood">Meistgebucht</span>
   )}
 
   <!-- Preis als Bierdeckel -->
   <div
     class:list={[
-      'absolute -top-7 right-5 grid size-24 place-items-center rounded-full border-[3px] border-dashed text-center leading-none',
-      pkg.featured ? 'border-paper/40 bg-berner text-paper' : 'border-ink/25 bg-paper text-ink',
+      'absolute -top-8 right-5 grid size-[6.5rem] place-items-center rounded-full text-center leading-none shadow-[0_8px_16px_-8px_rgb(0_0_0/.5)]',
+      pkg.featured ? 'bg-berner text-cream' : 'bg-cream-2 text-wood',
     ]}
     style={`transform: rotate(${tilt}deg)`}
   >
+    <span class:list={['absolute inset-1.5 rounded-full border-2 border-dashed', pkg.featured ? 'border-cream/35' : 'border-wood/20']}></span>
     <span>
-      <span class="block text-[0.65rem] font-mono uppercase tracking-widest opacity-80">{pkg.priceFrom ? 'ab CHF' : 'CHF'}</span>
-      <span class="block font-display text-[1.65rem] font-extrabold">{formatCHF(pkg.price).replace('CHF ', '')}</span>
+      <span class="block text-[0.62rem] font-semibold uppercase tracking-[0.2em] opacity-75">{pkg.priceFrom ? 'ab CHF' : 'CHF'}</span>
+      <span class="mt-1 block font-display text-[1.55rem]">{formatCHF(pkg.price).replace('CHF ', '')}</span>
     </span>
   </div>
 
-  <h3 class="text-2xl pr-24">{pkg.name}</h3>
-  <p class:list={['mt-1 text-[0.95rem] pr-20', pkg.featured ? 'text-paper/75' : 'text-ink-soft']}>{pkg.forWhom}</p>
+  <h3 class="text-[1.65rem] pr-24">{pkg.name}</h3>
+  <p class:list={['mt-1 text-[0.95rem] pr-20', pkg.featured ? 'text-cream/75' : 'text-ink-soft']}>{pkg.forWhom}</p>
 
-  <dl class:list={['mt-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 border-y py-4 text-[0.95rem]', pkg.featured ? 'border-paper/20' : 'border-line']}>
+  <dl class:list={['mt-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 py-4 text-[0.95rem]', pkg.featured ? 'border-y border-cream/20' : 'rule-double border-b border-line']}>
     <dt class="opacity-70">Gruppe</dt><dd class="font-semibold">{pkg.people}</dd>
     <dt class="opacity-70">Dauer</dt><dd class="font-semibold">{pkg.duration}</dd>
     <dt class="opacity-70">Quiz</dt><dd class="font-semibold">{pkg.rounds}</dd>
@@ -40,17 +41,18 @@ const { pkg, tilt = 0 } = Astro.props;
   <ul class="mt-5 space-y-2.5 text-[0.95rem]">
     {pkg.includes.map((i) => (
       <li class="flex gap-2.5">
-        <svg class:list={['mt-1 size-4 shrink-0', pkg.featured ? 'text-senf' : 'text-berner']} viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class:list={['mt-1 size-4 shrink-0', pkg.featured ? 'text-brass-2' : 'text-berner']} viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>{i}</span>
       </li>
     ))}
   </ul>
 
+  <div class="min-h-8 flex-1" aria-hidden="true"></div>
   <a
     href={`/anfrage/?paket=${pkg.id}`}
     class:list={[
-      'mt-8 inline-flex justify-center rounded-full px-5 py-3 font-semibold transition',
-      pkg.featured ? 'bg-paper text-ink hover:bg-senf' : 'border-2 border-ink hover:bg-ink hover:text-paper',
+      'inline-flex justify-center rounded-full px-5 py-3 font-semibold transition',
+      pkg.featured ? 'bg-brass text-wood hover:bg-brass-2' : 'border-2 border-wood hover:bg-wood hover:text-cream',
     ]}
   >«{pkg.name}» anfragen</a>
 </article>
