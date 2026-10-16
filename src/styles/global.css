@@ -96,7 +96,7 @@
       radial-gradient(ellipse at 30% 20%, rgb(255 255 255 / .06), transparent 60%),
       radial-gradient(ellipse at 80% 90%, rgb(255 255 255 / .04), transparent 55%);
     color: var(--color-chalk-text);
-    box-shadow: inset 0 0 0 10px #6b4a32, inset 0 0 0 12px #4a3122, 0 20px 40px -18px rgb(0 0 0 / .6);
+    box-shadow: inset 0 0 0 8px #5e4130, inset 0 0 0 9px #3d2a1f, 0 20px 40px -18px rgb(0 0 0 / .6);
   }
 
   /* Menükarte auf Cremepapier */
@@ -119,25 +119,6 @@
   .prose-chopf a { text-decoration: underline; text-underline-offset: 3px; color: var(--color-berner-dark); }
 }
 
-/* Mit Kreide gezogener Kreis um die richtige Antwort */
-@keyframes draw {
-  to { stroke-dashoffset: 0; }
-}
-.scribble path {
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: draw 1.1s 0.6s cubic-bezier(.6,.1,.3,1) forwards;
-}
-
-/* Glühbirnen der Lichterkette flackern leicht */
-@keyframes glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .72; }
-}
-.bulb { animation: glow 3.5s ease-in-out infinite; }
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .scribble path { animation: none; stroke-dashoffset: 0; }
-  .bulb { animation: none; }
 }

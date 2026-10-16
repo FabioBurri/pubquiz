@@ -1,62 +1,68 @@
 ---
 import Logo from './Logo.astro';
-import Button from './Button.astro';
 import { site } from '../data/site';
 import { occasions } from '../data/occasions';
 
 const links = [
-  { href: '/ablauf/', label: 'Ablauf' },
   { href: '/preise/', label: 'Preise' },
-  { href: '/faq/', label: 'FAQ' },
+  { href: '/ablauf/', label: 'Ablauf' },
   { href: '/ueber-uns/', label: 'Über uns' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => path.startsWith(href);
 ---
 
-<header class="sticky top-0 z-40 border-b border-black/40 bg-wood/95 text-cream backdrop-blur-md">
-  <div class="container-page flex h-16 items-center justify-between gap-4">
+<header class="sticky top-0 z-40 border-b border-white/5 bg-wood text-cream">
+  <div class="container-page flex h-14 items-center justify-between gap-4 lg:h-16">
     <a href="/" aria-label={`${site.name} – zur Startseite`}><Logo /></a>
 
-    <nav aria-label="Hauptnavigation" class="hidden lg:flex items-center gap-7 text-[0.95rem] font-medium text-cream/85">
+    <!-- Desktop -->
+    <nav aria-label="Hauptnavigation" class="hidden lg:flex items-center gap-8 text-[0.95rem] text-cream/80">
       <div class="group relative">
-        <button type="button" class="flex items-center gap-1 py-5 hover:text-brass-2" aria-haspopup="true">
+        <button type="button" class="flex items-center gap-1 py-5 hover:text-cream" aria-haspopup="true">
           Anlässe
-          <svg class="size-4 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4Z"/></svg>
+          <svg class="size-4 opacity-60" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4Z"/></svg>
         </button>
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full w-72 rounded-2xl border border-white/10 bg-wood-2 p-2 shadow-[0_16px_40px_-12px_rgb(0_0_0/.7)]">
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full w-72 rounded-xl bg-wood-2 p-2 shadow-[0_16px_40px_-12px_rgb(0_0_0/.7)]">
           {occasions.map((o) => (
-            <a href={`/${o.slug}/`} class="block rounded-xl px-4 py-2.5 hover:bg-wood-3 hover:text-brass-2">{o.card.title}</a>
+            <a href={`/${o.slug}/`} class="block rounded-lg px-4 py-2.5 hover:bg-wood-3 hover:text-cream">{o.card.title}</a>
           ))}
         </div>
       </div>
       {links.map((l) => (
-        <a href={l.href} class:list={['hover:text-brass-2', isActive(l.href) && 'text-brass-2']} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+        <a href={l.href} class:list={['hover:text-cream', isActive(l.href) && 'text-brass-2']} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
+      <a href="/anfrage/" class="rounded-full bg-brass px-5 py-2 font-semibold text-wood hover:bg-brass-2">Anfragen</a>
     </nav>
 
-    <div class="flex items-center gap-2">
-      <div class="hidden sm:block">
-        <Button href="/anfrage/" variant="brass" class="!py-2.5 !px-5 text-[0.95rem]">Quiz anfragen</Button>
-      </div>
-
-      <details class="lg:hidden relative group/menu">
-        <summary class="list-none cursor-pointer rounded-full border-2 border-cream/40 px-4 py-2 text-sm font-semibold [&::-webkit-details-marker]:hidden">
-          <span class="group-open/menu:hidden">Menü</span>
-          <span class="hidden group-open/menu:inline">Schliessen</span>
-        </summary>
-        <nav aria-label="Mobile Navigation" class="absolute right-0 top-[calc(100%+0.75rem)] w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-wood-2 p-3 shadow-[0_16px_40px_-12px_rgb(0_0_0/.7)]">
-          <p class="px-3 pt-1 pb-1 text-xs uppercase tracking-[0.2em] text-brass">Anlässe</p>
+    <!-- Mobile -->
+    <details class="lg:hidden group/menu">
+      <summary class="-mr-2 grid size-11 cursor-pointer list-none place-items-center rounded-full [&::-webkit-details-marker]:hidden" aria-label="Menü öffnen">
+        <svg class="size-6 group-open/menu:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        <svg class="size-6 hidden group-open/menu:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </summary>
+      <nav aria-label="Mobile Navigation" class="fixed inset-x-0 top-14 bottom-0 overflow-y-auto bg-wood px-4 pt-4 pb-10">
+        <p class="px-1 text-xs uppercase tracking-[0.2em] text-brass">Anlässe</p>
+        <ul class="mt-2">
           {occasions.map((o) => (
-            <a href={`/${o.slug}/`} class="block rounded-lg px-3 py-2 hover:bg-wood-3">{o.card.title}</a>
+            <li><a href={`/${o.slug}/`} class="block border-b border-white/10 px-1 py-3.5 font-display text-xl">{o.card.title}</a></li>
           ))}
-          <hr class="my-2 border-white/10" />
-          {links.map((l) => (
-            <a href={l.href} class="block rounded-lg px-3 py-2 hover:bg-wood-3">{l.label}</a>
+        </ul>
+        <ul class="mt-6">
+          {[...links, { href: '/faq/', label: 'Häufige Fragen' }].map((l) => (
+            <li><a href={l.href} class="block border-b border-white/10 px-1 py-3.5 font-display text-xl">{l.label}</a></li>
           ))}
-          <a href="/anfrage/" class="mt-2 block rounded-full bg-brass px-4 py-3 text-center font-semibold text-wood">Quiz anfragen</a>
-        </nav>
-      </details>
-    </div>
+        </ul>
+        <a href="/anfrage/" class="mt-8 block rounded-full bg-brass px-4 py-4 text-center font-semibold text-wood">Quiz anfragen</a>
+      </nav>
+    </details>
   </div>
 </header>
+
+<script>
+  // Seite hinter dem offenen Mobile-Menü nicht scrollen lassen
+  const menu = document.querySelector<HTMLDetailsElement>('header details');
+  menu?.addEventListener('toggle', () => {
+    document.documentElement.style.overflow = menu.open ? 'hidden' : '';
+  });
+</script>
